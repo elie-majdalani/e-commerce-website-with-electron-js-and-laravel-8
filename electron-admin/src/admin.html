@@ -1,0 +1,53 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>GP</title>
+</head>
+
+<body>
+
+    <div id="main">
+        <div class="main-body" id="admin-main-register-form">
+            <div class="register-form">
+                <div class="form-header">
+                    <h1>Register Product</h1>
+                </div>
+                <div class="form-item">
+                    <input type="text" id="item" name="item" placeholder="Item Name">
+                </div>
+                <div class="form-item">
+                    <input type="text" id="price" name="price" placeholder="Price">
+                </div>
+                <div class="form-item">
+                    <input type="text" id="category" name="category" placeholder="Category">
+                </div>
+                <div class="form-item" id="img-input-div">
+                    <label for="image" class="form-item">Input Image</label>
+                </div> 
+                
+                <input type="file" id="image"/>
+
+                <div class="form-item">
+                    <textarea type="text" id="description" name="description" placeholder="Product details"></textarea>
+                </div>
+                <button type="submit" id="submit-item" class="register-btn">Add Product</button>
+            </div>
+
+            <div class="register-form">
+                <div class="form-header">
+                    <h1>Add Category</h1>
+                </div>
+                <div class="form-item">
+                    <input type="text" id="new-category" name="category" placeholder="Category Name">
+                </div>
+                <button type="submit" id="submit-category" class="register-btn">Add Category</button>
+            </div>
+        </div>
+    </div>
+    <!-- <script src="./.js"></script> -->
+</body>
+
+</html>
