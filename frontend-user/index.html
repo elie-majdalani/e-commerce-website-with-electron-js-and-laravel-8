@@ -1,0 +1,43 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>GP</title>
+</head>
+
+<body>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    </div>
+
+
+
+    <div id="main">
+        <div class="page-header">
+            <span id="burger" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+            <a href="#"><img src="./assets/cart.png" alt="cart" class="shopping-cart"/></a>
+            <div class="search-box">
+                <img class="btn-search" src="./assets/search.png" alt="cart"/>
+                <input type="text" class="input-search" placeholder="Type to Search..." id="search-bar">
+            </div>
+        </div>
+        <div class="home-main-body">
+            <div class="left-categories-div">
+                <div class="categories-header">
+                    <h1>Categories</h1>
+                </div>
+                <div class="categories-body" id="categories" >
+                </div>
+            </div>   
+                <div class="right-items-div" id="products">
+                </div>
+
+        </div>
+    </div>
+    <script src="./scripts/index.js"></script>
+</body>
+
+</html>
