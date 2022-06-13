@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="./styles/styles.css" />
     <title>GP</title>
 </head>
@@ -11,10 +12,7 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="index.html">Home</a>
-        <a href="#">Logout</a>
-        <a href="login.html">Login</a>
-        <a href="register.html">Signup</a>
-        <a href="favorites.html">Favorites</a>
+        <a href="#" id="logout">Logout</a>
     </div>
 
 
@@ -29,90 +27,8 @@
             </div>
         </div>
         <div class="home-main-body">
-                <div class="right-items-div">
-                        <div class="item-div">
-                            <img src="./assets/item-tester.jpg" alt="item2" class="item-img"/>
-                            <div class="item-info">
-                                <h3 class="item-title">Item 1</h3>
-                                <p class="item-price">$1.00</p>
-                                <div class="item-info-btns">
-                                    <button id="add-to-cart" class="add-to">Add to Cart</button>
-                                    <button id="add-to-favorites" class="add-to">Remove</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item-div">
-                            <img src="./assets/item-tester.jpg" alt="item2" class="item-img"/>
-                            <div class="item-info">
-                                <h3 class="item-title">Item 1</h3>
-                                <p class="item-price">$1.00</p>
-                                <div class="item-info-btns">
-                                    <button id="add-to-cart" class="add-to">Add to Cart</button>
-                                    <button id="add-to-favorites" class="add-to">Remove</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item-div">
-                            <img src="./assets/item-tester.jpg" alt="item2" class="item-img"/>
-                            <div class="item-info">
-                                <h3 class="item-title">Item 1</h3>
-                                <p class="item-price">$1.00</p>
-                                <div class="item-info-btns">
-                                    <button id="add-to-cart" class="add-to">Add to Cart</button>
-                                    <button id="add-to-favorites" class="add-to">Remove</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item-div">
-                            <img src="./assets/item-tester.jpg" alt="item2" class="item-img"/>
-                            <div class="item-info">
-                                <h3 class="item-title">Item 1</h3>
-                                <p class="item-price">$1.00</p>
-                                <div class="item-info-btns">
-                                    <button id="add-to-cart" class="add-to">Add to Cart</button>
-                                    <button id="add-to-favorites" class="add-to">Remove</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item-div">
-                            <img src="./assets/item-tester.jpg" alt="item2" class="item-img"/>
-                            <div class="item-info">
-                                <h3 class="item-title">Item 1</h3>
-                                <p class="item-price">$1.00</p>
-                                <div class="item-info-btns">
-                                    <button id="add-to-cart" class="add-to">Add to Cart</button>
-                                    <button id="add-to-favorites" class="add-to">Remove</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item-div">
-                            <img src="./assets/item-tester.jpg" alt="item2" class="item-img"/>
-                            <div class="item-info">
-                                <h3 class="item-title">Item 1</h3>
-                                <p class="item-price">$1.00</p>
-                                <div class="item-info-btns">
-                                    <button id="add-to-cart" class="add-to">Add to Cart</button>
-                                    <button id="add-to-favorites" class="add-to">Remove</button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item-div">
-                            <img src="./assets/item-tester.jpg" alt="item2" class="item-img"/>
-                            <div class="item-info">
-                                <h3 class="item-title">Item 1</h3>
-                                <p class="item-price">$1.00</p>
-                                <div class="item-info-btns">
-                                    <button id="add-to-cart" class="add-to">Add to Cart</button>
-                                    <button id="add-to-favorites" class="add-to">Remove</button>
-                                </div>
-                            </div>
-                        </div>
+                <div class="right-items-div" id="products">
+    
 
                 </div>
 
