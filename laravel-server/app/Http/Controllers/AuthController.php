@@ -12,23 +12,24 @@ use App\Models\Category;
 use App\Models\favorite;
 use Illuminate\Http\Request;
 use App\Http\Middleware\Cors;
-    
+
 class AuthController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login','register','getAllItems','getItemsByCategory','getAllCategories','getItemById','search']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'getAllItems', 'getItemsByCategory', 'getAllCategories', 'getItemById', 'search']]);
     }
 
 
-    public function register(){
+    public function register()
+    {
 
-        $validator = validator() -> make(request()->all(),[
+        $validator = validator()->make(request()->all(), [
             'username' => 'string|required',
             'email' => 'email|required',
             'password' => 'string|min:6'
         ]);
-        if ($validator ->fails()){
+        if ($validator->fails()) {
             return response()->json([
                 'status' => 'error',
                 'message' => $validator->errors()
@@ -43,14 +44,13 @@ class AuthController extends Controller
             'status' => 'success',
             'data' => $user
         ], 200);
-        
-    } 
+    }
 
     public function login()
     {
         $credentials = request(['email', 'password']);
 
-        if (! $token = JWTAuth::attempt($credentials)) {
+        if (!$token = JWTAuth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -73,7 +73,7 @@ class AuthController extends Controller
             'expires_in' => config('jwt.ttl')
         ]);
     }
-    
+
     public function me()
     {
         return response()->json(auth()->user());
@@ -90,7 +90,7 @@ class AuthController extends Controller
     //funtion to get all items by category
     public function getItemsByCategory(request $request)
     {
-        $items = Item::with('category')->where('category_id',$request->id)->get();
+        $items = Item::with('category')->where('category_id', $request->id)->get();
         return response()->json([
             'status' => 'success',
             'data' => $items
@@ -100,7 +100,7 @@ class AuthController extends Controller
     //function to get item by id
     public function getItemById(request $request)
     {
-        $item = Item::where('id',$request->id)->get();
+        $item = Item::where('id', $request->id)->get();
         return response()->json([
             'status' => 'success',
             'data' => $item
@@ -116,7 +116,7 @@ class AuthController extends Controller
             'data' => $categories
         ], 200);
     }
-    
+
     public function addToFavorite(request $request)
     {
         $user = Auth::user();
@@ -134,8 +134,8 @@ class AuthController extends Controller
     public function getAllFavorites()
     {
         $user = Auth::user();
-        $favorites = favorite::where('user_id',$user->id)->get('item_id');
-        $items = Item::whereIn('id',$favorites)->get();
+        $favorites = favorite::where('user_id', $user->id)->get('item_id');
+        $items = Item::whereIn('id', $favorites)->get();
         return response()->json([
             'status' => 'success',
             'data' => $items
@@ -144,7 +144,7 @@ class AuthController extends Controller
 
     public function search(request $request)
     {
-        $items = Item::where('name','like','%'.$request->search.'%')->get();
+        $items = Item::where('name', 'like', '%' . $request->search . '%')->get();
         return response()->json([
             'status' => 'success',
             'data' => $items
@@ -154,19 +154,26 @@ class AuthController extends Controller
     //fucntion let admin add new item
     public function addItem(request $request)
     {
+
+        $path = $request->image->file('image')->store('public/images');
+        $validatedData = $request->image->validate(['image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',]);
+        $name = $request->image->file('image')->getClientOriginalName();
+        $path = $request->image->file('image')->store('public/images');
+
+
         $item = Item::create([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
             'category_id' => $request->category_id,
-            'image' => $request->image
+            'image' => $path,$name
         ]);
         return response()->json([
             'status' => 'success',
-            'data' => $item
+            'data' => $path,$name
         ], 200);
     }
-        //fucntion only admin add new category
+    //fucntion only admin add new category
     public function addCategory(request $request)
     {
         $category = Category::create([
@@ -177,5 +184,4 @@ class AuthController extends Controller
             'data' => $category
         ], 200);
     }
-
 }
