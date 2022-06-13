@@ -1,55 +1,65 @@
-document.getElementById("submit-item").addEventListener("click", function(event) {
+document.getElementById("submit-item").addEventListener("click", function (event) {
     event.preventDefault();
     var item = document.getElementById("item").value;
     var price = document.getElementById("price").value;
     var category = document.getElementById("category").value;
     var description = document.getElementById("description").value;
-    var image = document.getElementById("image").value;
+    var image = document.getElementById("image");
+    debugger
     var item = {
-        item: item,
-        price: price,
-        category: category,
+        name: item,
         description: description,
-        image: image
+        price: price,
+        category_id: category,
+        image: image.files[0]
     }
+    token = localStorage.getItem("token");
     var url = 'http://127.0.0.1:8000/api/auth/addItem/';
+    
     axios({
         method: 'get',
         url: url,
-        data: item
+        params: item,
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
     })
-    .then(function (response) {
-        console.log(response);
-        alert("Successfully added");
-        window.location.href = "admin.html";
-    })
-    .catch(function (error) {
-        console.log(error);
-        alert("error");
-    });
-    
+        .then(function (response) {
+            console.log(response);
+            alert("Successfully added");
+            window.location.href = "admin.html";
+        })
+        .catch(function (error) {
+            console.log(error);
+            alert("error");
+        });
+
 })
 
-document.getElementById("submit-category").addEventListener("click", function(event) {
+document.getElementById("submit-category").addEventListener("click", function (event) {
     event.preventDefault();
     var category = document.getElementById("new-category").value;
     var category = {
-        category: category
+        name: category
     }
     var url = 'http://127.0.0.1:8000/api/auth/addCategory/';
+    token = localStorage.getItem("token");
     axios({
         method: 'get',
         url: url,
-        data: category
+        params: category,
+        headers: {
+            "Authorization": `Bearer ${token}`
+        }
     })
-    .then(function (response) {
-        console.log(response);
-        alert("Successfully added");
-        window.location.href = "admin.html";
-    })
-    .catch(function (error) {
-        console.log(error);
-        alert("error");
-    });
-    
+        .then(function (response) {
+            console.log(response);
+            alert("Successfully added");
+            window.location.href = "admin.html";
+        })
+        .catch(function (error) {
+            console.log(error);
+            alert("error");
+        });
+
 })
